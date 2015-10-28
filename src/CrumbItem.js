@@ -5,6 +5,9 @@
  * Copyright 2014-2015, Uxcore Team, Alinw.
  * All rights reserved.
  */
+
+let classnames = require('classnames');
+
 class CrumbItem extends React.Component {
 
   constructor(props) {
@@ -14,18 +17,20 @@ class CrumbItem extends React.Component {
   render() {
     const props = this.props;
 
-    return !props.href ? <span className={props.className}>{props.children}</span> : <a href={props.href} className={props.className}>{props.children}</a>
+    return !props.href ? <span className={classnames({
+        [props.className]: !!props.className
+    })}>{props.children}</span> : <a href={props.href} className={props.className}>{props.children}</a>
   }
 }
 
 CrumbItem.defaultProps = {
-  className: ''
 }
 
 
 // http://facebook.github.io/react/docs/reusable-components.html
 CrumbItem.propTypes = {
-  href: React.PropTypes.string
+  href: React.PropTypes.string,
+  className: React.PropTypes.string
 }
 
 CrumbItem.displayName = 'CrumbItem';
