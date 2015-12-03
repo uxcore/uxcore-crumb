@@ -6,13 +6,21 @@
  * All rights reserved.
  */
 
-.kuma-uxcrumbs a {
- color: #666;
- margin-right: 5px;
- padding-right: 15px;
- background: url(//aliwork.alicdn.com/tps/i1/TB1nS6WGVXXXXbcXpXX9vPJJFXX-9-9.png) right center no-repeat;
+.kuma-uxcrumbs {
+	a {
+		color: #666;
+		margin-right: 5px;
+		&:hover {
+			text-decoration: none;
+		}
+		&:after {
+			padding-left: 8px;
+			content: @arrow-right-content;
+			font-family: @crumb-font-family;
+		}
+	}
+	span {
+		color: #999;
+	}
 }
 
-.kuma-uxcrumbs span {
- color: #999;
-}
