@@ -8,6 +8,8 @@
 
 let CrumbItem = require('./CrumbItem');
 let classnames = require('classnames');
+let React = require('react'); 
+let ReactDOM = require('react-dom');
 
 class Crumb extends React.Component {
 
