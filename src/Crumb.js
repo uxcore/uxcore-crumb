@@ -40,7 +40,15 @@ Crumb.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Crumb.propTypes = {
+  /**
+   * @title 类名前缀
+   * @veIgnore
+   */
   prefixCls: React.PropTypes.string,
+  /**
+   * @title CSS类名
+   * @veIgnore
+   */
   className: React.PropTypes.string
 }
 
