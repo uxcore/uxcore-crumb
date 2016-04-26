@@ -49,6 +49,9 @@ var concat = require('gulp-concat');
 // https://www.npmjs.com/package/gulp-just-replace/
 var replace = require('gulp-just-replace');
 
+// https://www.npmjs.com/package/gulp-es3ify
+var es3ify = require("gulp-es3ify");
+
 gulp.task('pack_demo', function(cb) {
     webpack(require('./webpack.dev.js'), function (err, stats) {
         // 重要 打包过程中的语法错误反映在stats中
@@ -62,14 +65,23 @@ gulp.task('pack_demo', function(cb) {
 gulp.task('pack_build', function(cb) {
     gulp.src(['./src/**/*.js'])
         .pipe(babel({
-            presets: ['react', 'es2015', 'stage-1'],
+            presets: ['react', 'es2015-loose', 'stage-1'],
             plugins: ['add-module-exports']
         }))
+        .pipe(es3ify())
         .pipe(gulp.dest('build'))
         .on('end', function() {
             cb();
         })
 });
+
+gulp.task('logo_build', function(cb) {
+    gulp.src(['./src/**/*.svg'])
+        .pipe(gulp.dest('build'))
+        .on('end', function() {
+            cb();
+        })
+})
 
 gulp.task('less_demo', function(cb) {
     gulp.src(['./demo/**/*.less'])
@@ -117,11 +129,11 @@ gulp.task('server', [
 
 });
 
-gulp.task('default', ['pack_build'], function() {
+gulp.task('default', ['pack_build', 'logo_build'], function() {
 
 });
 
-gulp.task('publish', ['pack_build'], function() {
+gulp.task('publish', ['pack_build', 'logo_build'], function() {
     setTimeout(function() {
         var questions = [
             {

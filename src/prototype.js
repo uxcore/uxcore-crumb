@@ -6,7 +6,7 @@ const {BoolSetter, TextSetter, ChoiceSetter, JsonSetter, NumberSetter} = require
 module.exports = Bundle.createPrototype({
     title: "面包屑",
     category: "*",
-    icon: "", // todo: require("./logo.svg"),
+    icon: require("./logo.svg"), // todo: require("./logo.svg"),
     componentName: "Crumb",
     canHovering: true,
     canSelecting: true,
@@ -14,6 +14,32 @@ module.exports = Bundle.createPrototype({
     isInline: false,
     isContainer: true,
     canDropto: true,
-    conDroping: true,
-    configure: []
+    canDroping: 'TabPane',
+    configure: [{
+        name: "items",
+        title: "面包屑项",
+        fieldStyle: "block",
+        setter: <ListSetter primaryKey="key" titleField="tab" addData={{children: "面包屑项"}} />,
+        ignore: true,
+        accessor: function() {
+            let node = this.getNode();
+            let children = node.getChildren();
+            return children.map((child) => {
+                let childText = child.getPropValue('children');
+                let href = child.getPropValue('href');
+                let data = {children: childText, href};
+                return data;
+            })
+        },
+        mutator: function(value, hotValue) {
+            let node = this.getNode();
+            node.mergeChildren((child, index) => {
+                return true
+            }, (children) => {
+                return value;
+            }, (child1, child2) => {
+                return -1;
+            });
+        }
+    }]
 });
