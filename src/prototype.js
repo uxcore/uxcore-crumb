@@ -18,26 +18,26 @@ module.exports = Bundle.createPrototype({
     initialChildren: [{
         componentName: "CrumbItem",
         props: {
-            content: "标签A",
+            children: "标签A",
             href: "http://www.taobao.com"
         }
     }, {
         componentName: "CrumbItem",
         props: {
-            content: "标签B",
+            children: "标签B",
         }
     }],
     configure: [{
         name: "items",
         title: "面包屑项",
         fieldStyle: "block",
-        setter: <ListSetter primaryKey="" titleField="content" addData={{ content: "面包屑项" }} />,
+        setter: <ListSetter primaryKey="" titleField="children" addData={{ children: "面包屑项" }} />,
         ignore: true,
         accessor: function() {
             let node = this.getNode();
             let children = node.getChildren();
             return children.map((child) => {
-                let childText = child.getPropValue('content');
+                let childText = child.getPropValue('children');
                 let href = child.getPropValue('href');
                 let data = {
                     content: childText,

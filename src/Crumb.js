@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-let CrumbItem = require('./CrumbItem');
+let CrumbItem = require('uxcore-crumb-item');
 let classnames = require('classnames');
 let React = require('react'); 
 let ReactDOM = require('react-dom');
@@ -18,16 +18,14 @@ class Crumb extends React.Component {
   }
 
   render() {
-    const props = this.props;
+    let me = this;
 
     return (
       <div className={classnames({
-        [props.prefixCls]: true,
-        [props.className]: !!props.className
+        [me.props.prefixCls]: true,
+        [me.props.className]: !!me.props.className
       })}>
-        {React.Children.map(this.props.children, function (item) {
-           return <CrumbItem {...item.props}>{item.props.children}</CrumbItem>
-        })}
+        {me.props.children}
       </div>
     );
   }
