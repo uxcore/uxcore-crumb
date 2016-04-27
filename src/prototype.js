@@ -1,7 +1,7 @@
 
 const React = require('react');
 const {Bundle} = require('engine');
-const {BoolSetter, TextSetter, ChoiceSetter, JsonSetter, NumberSetter} = require('engine-utils');
+const {ListSetter} = require('engine-utils');
 
 module.exports = Bundle.createPrototype({
     title: "面包屑",
@@ -14,20 +14,35 @@ module.exports = Bundle.createPrototype({
     isInline: false,
     isContainer: true,
     canDropto: true,
-    canDroping: 'TabPane',
+    canDroping: false,
+    initialChildren: [{
+        componentName: "CrumbItem",
+        props: {
+            content: "标签A",
+            href: "http://www.taobao.com"
+        }
+    }, {
+        componentName: "CrumbItem",
+        props: {
+            content: "标签B",
+        }
+    }],
     configure: [{
         name: "items",
         title: "面包屑项",
         fieldStyle: "block",
-        setter: <ListSetter primaryKey="key" titleField="tab" addData={{children: "面包屑项"}} />,
+        setter: <ListSetter primaryKey="" titleField="content" addData={{ content: "面包屑项" }} />,
         ignore: true,
         accessor: function() {
             let node = this.getNode();
             let children = node.getChildren();
             return children.map((child) => {
-                let childText = child.getPropValue('children');
+                let childText = child.getPropValue('content');
                 let href = child.getPropValue('href');
-                let data = {children: childText, href};
+                let data = {
+                    content: childText,
+                    href
+                };
                 return data;
             })
         },
@@ -36,7 +51,9 @@ module.exports = Bundle.createPrototype({
             node.mergeChildren((child, index) => {
                 return true
             }, (children) => {
-                return value;
+                return value.map(item => {
+                    return {componentName: "CrumbItem", props: item};
+                });
             }, (child1, child2) => {
                 return -1;
             });
