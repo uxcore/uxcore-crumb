@@ -8,17 +8,26 @@
 //  TODO: 1. 箭头字体 2. hover状态
 
 .kuma-uxcrumbs {
-	a {
+	a,span {
 		color: @text-primary-color;
-		margin-right: 10px;
+		margin-right: 6px;
+		display: inline-block;
+
 		&:hover {
 			text-decoration: none;
 		}
-		&:after {
-			padding-left: 10px;
+		&:before {
 			content: '\e6a6';
 			font-family: 'kuma';
+			margin-right: 6px;
 			color: @text-thirdary-color;
+		}
+
+		&:first-child {
+			&:before {
+				content: '';
+			}
+			
 		}
 	}
 	span {
