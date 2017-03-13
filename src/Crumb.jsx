@@ -2,7 +2,7 @@
  * Crumb Component for uxcore
  * @author peijie.dpj
  *
- * Copyright 2014-2015, Uxcore Team, Alinw.
+ * Copyright 2014-2017, Uxcore Team, Alinw.
  * All rights reserved.
  */
 
@@ -11,10 +11,6 @@ const classnames = require('classnames');
 const React = require('react');
 
 class Crumb extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const me = this;

@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Crumb');
+module.exports = require('./Crumb.jsx');

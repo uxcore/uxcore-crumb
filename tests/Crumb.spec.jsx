@@ -1,39 +1,64 @@
-
-/* eslint-disable react/no-multi-comp */
-/* eslint-disable react/prefer-es6-class */
-/* eslint-disable react/no-string-refs */
 import expect from 'expect.js';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils, { Simulate } from 'react-addons-test-utils';
+import { mount } from 'enzyme';
 import Crumb from '../src';
 
 describe('Crumb', () => {
-  let div;
-  let instance;
-  beforeEach(() => {
-    div = document.createElement('div');
-    document.body.appendChild(div);
+  it('render correct', () => {
+    mount(<Crumb />);
+  });
+});
+
+describe('Props', () => {
+  let wrapper;
+
+  it('className support', () => {
+    wrapper = mount(<Crumb className="test" />);
+    expect(wrapper.component.getDOMNode().className).to.be('kuma-uxcrumbs test');
   });
 
-  afterEach(() => {
-    ReactDOM.unmountComponentAtNode(div);
-    document.body.removeChild(div);
+  it('prefixCls support', () => {
+    wrapper = mount(<Crumb prefixCls="test" />);
+    expect(wrapper.component.getDOMNode().className).to.be('test');
+  });
+});
+
+describe('Children', () => {
+  let wrapper;
+
+  it('has link', () => {
+    wrapper = mount(
+      <Crumb>
+        <Crumb.Item href="#">index</Crumb.Item>
+        <Crumb.Item href="#">list</Crumb.Item>
+        <Crumb.Item href="#">detail</Crumb.Item>
+      </Crumb>);
+    expect(wrapper.find('a')).to.have.length(3);
   });
 
-  it('view', (done) => {
-    const Demo = React.createClass({
-      render() {
-        return (
-          <Crumb>
-            <Crumb.Item ref="index">index</Crumb.Item>
-          </Crumb>
-        );
-      },
-    });
-    instance = ReactDOM.render(<Demo />, div);
-    const CrumbNode = instance.refs.index;
-    expect(CrumbNode.getLabelNode().innerHTML).to.be('index');
-    done();
+  it('no link', () => {
+    wrapper = mount(
+      <Crumb>
+        <Crumb.Item>index</Crumb.Item>
+        <Crumb.Item>list</Crumb.Item>
+        <Crumb.Item>detail</Crumb.Item>
+      </Crumb>);
+    expect(wrapper.find('a')).to.have.length(0);
+  });
+
+  it('link children className support', () => {
+    wrapper = mount(
+      <Crumb>
+        <Crumb.Item href="#" className="children-classname-index">index</Crumb.Item>
+      </Crumb>);
+    expect(wrapper.find('a.children-classname-index')).to.have.length(1);
+  });
+
+  it('no link children className support', () => {
+    wrapper = mount(
+      <Crumb>
+        <Crumb.Item className="children-classname-index">index</Crumb.Item>
+      </Crumb>);
+    expect(wrapper.find('span.children-classname-index')).to.have.length(1);
   });
 });
