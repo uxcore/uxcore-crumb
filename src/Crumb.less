@@ -2,23 +2,35 @@
  * Crumb Component Style for uxcore
  * @author peijie.dpj
  *
- * Copyright 2014-2015, Uxcore Team, Alinw.
+ * Copyright 2014-2017, Uxcore Team, Alinw.
  * All rights reserved.
  */
 //  TODO: 1. 箭头字体 2. hover状态
 
 .kuma-uxcrumbs {
-	a {
+	a,span {
 		color: @text-primary-color;
-		margin-right: 10px;
+		margin-right: 8px;
+		display: inline-block;
+
 		&:hover {
 			text-decoration: none;
 		}
-		&:after {
-			padding-left: 10px;
+		&:before {
 			content: '\e6a6';
 			font-family: 'kuma';
+			margin-right: 8px;
 			color: @text-thirdary-color;
+		}
+
+		&:first-child {
+			&:before {
+				content: '';
+			}
+		}
+
+		&:last-child {
+			margin-right: 0;
 		}
 	}
 	span {
