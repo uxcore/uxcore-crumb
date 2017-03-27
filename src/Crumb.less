@@ -5,27 +5,27 @@
  * Copyright 2014-2017, Uxcore Team, Alinw.
  * All rights reserved.
  */
-//  TODO: 1. 箭头字体 2. hover状态
 
 .kuma-uxcrumbs {
 	a,span {
-		color: @text-primary-color;
 		margin-right: 8px;
 		display: inline-block;
 
-		&:hover {
-			text-decoration: none;
-		}
 		&:before {
-			content: '\e6a6';
-			font-family: 'kuma';
+			content: "\e65b";
+			font-size: 10px;
+			font-family: uxcore!important;
 			margin-right: 8px;
-			color: @text-thirdary-color;
+			color: @normal-alpha-4;
+		}
+
+		&:after {
+			content: none;
 		}
 
 		&:first-child {
 			&:before {
-				content: '';
+				content: none;
 			}
 		}
 
@@ -33,8 +33,26 @@
 			margin-right: 0;
 		}
 	}
+
+	a {
+		color: @normal-alpha-2;
+		&:hover {
+			text-decoration: none;
+			color: @brand-primary-hover;
+		}
+		&:focus {
+			color: @brand-primary-focus;
+		}
+	}
 	span {
-		color: @text-thirdary-color;
+		color: @normal-alpha-4;
+	}
+
+	a,span {
+		&[disabled] {
+			color: @normal-alpha-5;
+			cursor: not-allowed;
+		}
 	}
 }
 

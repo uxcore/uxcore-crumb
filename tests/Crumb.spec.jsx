@@ -61,4 +61,12 @@ describe('Children', () => {
       </Crumb>);
     expect(wrapper.find('span.children-classname-index')).to.have.length(1);
   });
+
+  it('disabled children support', () => {
+    wrapper = mount(
+      <Crumb>
+        <Crumb.Item className="children-classname-disabled" disabled>disabled</Crumb.Item>
+      </Crumb>);
+    expect(wrapper.find('[disabled]')).to.have.length(1);
+  });
 });
