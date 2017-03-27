@@ -11,22 +11,16 @@ const Crumb = require('../src');
 
 class Demo extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    console.log(111, this.refs.crumb);
   }
 
   render() {
-    
-
     return (
       <Crumb
         ref="crumb"
-        className="crumb-style crumb-root">
-        <Crumb.Item href="#" className="crumb-item-style">首页</Crumb.Item>
+        className="crumb-style crumb-root"
+      >
+        <Crumb.Item href="#" className="crumb-item-style" disabled>首页</Crumb.Item>
         <Crumb.Item href="#">管理平台</Crumb.Item>
         <Crumb.Item href="#">流程管理</Crumb.Item>
         <Crumb.Item className="crumb-item-style">编辑流程信息</Crumb.Item>
