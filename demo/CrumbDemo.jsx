@@ -5,8 +5,9 @@
  * Copyright 2014-2015, Uxcore Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const Crumb = require('../src');
+import React from 'react';
+
+import Crumb from '../src/Crumb';
 
 
 class Demo extends React.Component {
@@ -17,7 +18,7 @@ class Demo extends React.Component {
   render() {
     return (
       <Crumb
-        ref="crumb"
+        ref={(c) => { this.crumb = c; }}
         className="crumb-style crumb-root"
       >
         <Crumb.Item href="#" className="crumb-item-style" disabled>首页</Crumb.Item>
@@ -29,4 +30,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

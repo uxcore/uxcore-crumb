@@ -1,7 +1,10 @@
 import expect from 'expect.js';
 import React from 'react';
-import { mount } from 'enzyme';
-import Crumb from '../src';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
+import Crumb from '../src/Crumb';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Crumb', () => {
   it('render correct', () => {
@@ -14,12 +17,13 @@ describe('Props', () => {
 
   it('className support', () => {
     wrapper = mount(<Crumb className="test" />);
-    expect(wrapper.component.getDOMNode().className).to.be('kuma-uxcrumbs test');
+    window.wrapper = wrapper;
+    expect(wrapper.getDOMNode().className).to.be('kuma-uxcrumbs test');
   });
 
   it('prefixCls support', () => {
     wrapper = mount(<Crumb prefixCls="test" />);
-    expect(wrapper.component.getDOMNode().className).to.be('test');
+    expect(wrapper.getDOMNode().className).to.be('test');
   });
 });
 
@@ -67,6 +71,6 @@ describe('Children', () => {
       <Crumb>
         <Crumb.Item className="children-classname-disabled" disabled>disabled</Crumb.Item>
       </Crumb>);
-    expect(wrapper.find('[disabled]')).to.have.length(1);
+    expect(wrapper.find('[disabled]').hostNodes()).to.have.length(1);
   });
 });
