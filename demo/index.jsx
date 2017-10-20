@@ -6,8 +6,9 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Demo = require('./CrumbDemo');
+import React from 'react';
+
+import ReactDOM from 'react-dom';
+import Demo from './CrumbDemo';
 
 ReactDOM.render(<Demo />, document.getElementById('UXCoreDemo'));
