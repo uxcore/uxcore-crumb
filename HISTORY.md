@@ -1,6 +1,11 @@
 HISTORY
 ---
 
+## 0.2.5
+
+* `CHANGED` fit React@16
+* `CHANGED` move crumb-item into repo, the original crumb-item is Abandoned
+
 ## 0.2.4
 
 * `CHANGED` fit React@15
