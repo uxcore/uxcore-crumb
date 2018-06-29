@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-import CrumbItem from 'uxcore-crumb-item';
+import CrumbItem from './CrumbItem';
 
 import classnames from 'classnames';
 import React from 'react';
