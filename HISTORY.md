@@ -1,5 +1,8 @@
 HISTORY
 ---
+## 0.2.6
+
+* `CHANGED` support js style export
 
 ## 0.2.5
 
